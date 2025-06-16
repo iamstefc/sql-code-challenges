@@ -8,8 +8,8 @@ Throughout the code solutions, I will try to log my journey by creating comments
 
 Solutions are organized into respective directories for clarity:
 
-* `datalemur/`: Contains solutions to LeetCode problems, typically named by problem number and title (e.g., `1_facebook_active_user_retention.sql`)
-* `hackerrank/`: Contains solutions to LeetCode problems, typically named by problem number and title (e.g., `2_weather_observation_station_five.sql`)
+* `datalemur/`: Contains solutions to Datalemur problems, typically named by problem number and title (e.g., `1_facebook_active_user_retention.sql`)
+* `hackerrank/`: Contains solutions to Hackerrank problems, typically named by database topic (e.g., `weather_observation_station.sql` would include solutions for all queries using same source)
 
 ## Setup and Development Environment
 
@@ -26,12 +26,18 @@ To follow along with this repo, it may be best to set up your environment:
 
 ## Challenge Log
 
-This table provides an overview of the challenges I've worked on:
+This table provides an overview of the Datalemur challenges I've worked on:
 
 | # | Title | Source | Solution Link | End Goal | 
  | ----- | ----- | ----- | ----- | ----- | 
- | 1 | facebook active user retention | [datalemur](https://datalemur.com/questions/user-retention) | TBA | Write a query to obtain number of monthly active users (MAUs) in July 2022 |
- | 2 | weather observation station five | [hackerrank](https://www.hackerrank.com/challenges/weather-observation-station-5/problem?isFullScreen=true) | TBA | Query the two cities in STATION with the shortest and longest CITY names, as well as their respective lengths |
+ | 1 | facebook active user retention | [datalemur](https://datalemur.com/questions/user-retention) | [1_facebook_active_user_retention] | Write a query to obtain number of monthly active users (MAUs) in July 2022 |
+
+This table provides an overview of the Hackerrank challenges I've worked on:
+
+ | # | Title | Source | Solution Link | End Goal | 
+ | ----- | ----- | ----- | ----- | ----- | 
+ | 1 | weather observation station | [hackerrank](https://www.hackerrank.com/challenges/weather-observation-station-5/problem?isFullScreen=true) | [weather_observation_station_five] | Query the two cities in STATION with the shortest and longest CITY names, as well as their respective lengths |
+ | 2 | weather observation station | [hackerrank](https://www.hackerrank.com/challenges/weather-observation-station-20/problem?isFullScreen=true) | [weather_observation_station_twenty] | Query the median of the Northern Latitudes (LAT_N) from STATION and round your answer to  decimal places |
 
 ## Contribution
 

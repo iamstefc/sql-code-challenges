@@ -1,5 +1,5 @@
 -- written with PostgreSQL 17
-CREATE TABLE public.weather_observation_station_five
+CREATE TABLE public.station
 (
     id integer,
     city text,
@@ -8,10 +8,10 @@ CREATE TABLE public.weather_observation_station_five
     long_w double precision
 );
 
-ALTER TABLE IF EXISTS public.weather_observation_station_five
+ALTER TABLE IF EXISTS public.station
     OWNER to postgres;
 
-INSERT INTO public.weather_observation_station_five (id, city, state, lat_n, long_w) VALUES
+INSERT INTO public.station (id, city, state, lat_n, long_w) VALUES
 (794, 'Kissee Mills', 'MO', 139.6503652000, 73.4160988400),
 (824, 'Loma Mar', 'CA', 48.6978857200, 130.5393541000),
 (603, 'Sandy Hook', 'CT', 72.3374801400, 148.2400769000),
@@ -27,11 +27,15 @@ INSERT INTO public.weather_observation_station_five (id, city, state, lat_n, lon
 (441, 'Hanna City', 'IL', 50.9893298700, 136.7811010000),
 (811, 'Dorrance', 'KS', 102.0888316000, 121.5614372000);
 
+-- changes from pull request 
+ALTER TABLE weather_observation_station_five RENAME TO station;
+
+-- solution for weather_observation_station_five
 SELECT CITY, name_length
 FROM (
     -- city with the shortest name and its length
     SELECT CITY, LENGTH(CITY) AS name_length
-    FROM weather_observation_station_five
+    FROM station
     ORDER BY LENGTH(CITY) ASC, CITY ASC
     LIMIT 1
 ) AS shortest_city_result
@@ -42,9 +46,22 @@ SELECT CITY, name_length
 FROM (
     -- city with the longest name and its length
     SELECT CITY, LENGTH(CITY) AS name_length
-    FROM weather_observation_station_five
+    FROM station
     ORDER BY LENGTH(CITY) DESC, CITY ASC
     LIMIT 1
 ) AS longest_city_result;
 
--- the MySQL solution
+-- solution for weather_observation_station_twenty
+WITH station_quartile AS (
+    SELECT
+        *,
+        NTILE(4) OVER (ORDER BY LAT_N) AS quartile
+    FROM
+        STATION
+)
+SELECT
+    ROUND(MAX(LAT_N)::numeric, 4) -- Added ::numeric for explicit type casting for ROUND
+FROM
+    station_quartile
+WHERE
+    quartile = 2;
