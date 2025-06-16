@@ -27,7 +27,7 @@ INSERT INTO public.station (id, city, state, lat_n, long_w) VALUES
 (441, 'Hanna City', 'IL', 50.9893298700, 136.7811010000),
 (811, 'Dorrance', 'KS', 102.0888316000, 121.5614372000);
 
--- changes from pull request 
+-- changes from pull request #3
 ALTER TABLE weather_observation_station_five RENAME TO station;
 
 -- solution for weather_observation_station_five
@@ -52,16 +52,27 @@ FROM (
 ) AS longest_city_result;
 
 -- solution for weather_observation_station_twenty
-WITH station_quartile AS (
+-- my initial mistake, solution worked with odd numbers
+WITH distributed_quartiles AS (
     SELECT
         *,
-        NTILE(4) OVER (ORDER BY LAT_N) AS quartile
+        NTILE(4) OVER (ORDER BY LAT_N) AS quartile -- NTILE tried to distrubute rows as evenly as possible
     FROM
-        STATION
+        station
 )
 SELECT
-    ROUND(MAX(LAT_N)::numeric, 4) -- Added ::numeric for explicit type casting for ROUND
+    ROUND(MAX(LAT_N)::numeric, 4) AS north_latitude_median
 FROM
-    station_quartile
+    distributed_quartiles
 WHERE
-    quartile = 2;
+    quartile = 2; -- NTILE distribution works dependent on dataset numbers, 2 points close to middle
+
+-- final solution, consider both odd and even number of numbers in the dataset
+-- PERCENTILE_CONT(0.5) calculate the value at the 50th percentile
+SELECT
+    ROUND(
+        PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY LAT_N)::numeric,
+        4
+    ) AS north_latitude_median
+FROM
+    station;
