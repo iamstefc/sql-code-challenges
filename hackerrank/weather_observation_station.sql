@@ -30,6 +30,30 @@ INSERT INTO public.station (id, city, state, lat_n, long_w) VALUES
 -- changes from pull request #3
 ALTER TABLE weather_observation_station_five RENAME TO station;
 
+------------------------------------------------------------------------------------------------------
+-- solution for weather_observation_station_one
+SELECT 
+    CITY, 
+    STATE 
+FROM station;
+
+-- solution for weather_observation_station_two
+
+
+-- solution for weather_observation_station_three
+SELECT
+    CITY
+FROM
+    station
+WHERE
+    MOD(ID, 2) = 0;
+
+-- solution for weather_observation_station_four
+SELECT 
+    COUNT(CITY) - COUNT(DISTINCT CITY) 
+FROM station;
+
+
 -- solution for weather_observation_station_five
 SELECT CITY, name_length
 FROM (
