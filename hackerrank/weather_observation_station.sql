@@ -25,7 +25,8 @@ INSERT INTO public.station (id, city, state, lat_n, long_w) VALUES
 (342, 'Chignik Lagoon', 'AK', 103.1995264000, 153.0084273000),
 (733, 'Pelahatchie', 'MS', 38.5816159500, 28.1195070300),
 (441, 'Hanna City', 'IL', 50.9893298700, 136.7811010000),
-(811, 'Dorrance', 'KS', 102.0888316000, 121.5614372000);
+(811, 'Dorrance', 'KS', 102.0888316000, 121.5614372000)
+(222, 'Atlanta', 'GA', 33.7658395757, 73.5440912300);
 
 -- changes from pull request #3
 ALTER TABLE weather_observation_station_five RENAME TO station;
@@ -38,7 +39,10 @@ SELECT
 FROM station;
 
 -- solution for weather_observation_station_two
-
+SELECT
+	ROUND(SUM(LAT_N),2), 
+	ROUND(SUM(LONG_W),2) 
+FROM station;
 
 -- solution for weather_observation_station_three
 SELECT
@@ -74,6 +78,42 @@ FROM (
     ORDER BY LENGTH(CITY) DESC, CITY ASC
     LIMIT 1
 ) AS longest_city_result;
+
+-- solution for weather_observation_station_six
+SELECT DISTINCT CITY
+FROM STATION
+WHERE CITY ~* '^[aeiou]';
+
+-- solution for weather_observation_station_seven
+SELECT DISTINCT CITY
+FROM STATION
+WHERE CITY ~* '[aeiou]$';
+
+-- solution for weather_observation_station_eight
+SELECT DISTINCT CITY
+FROM STATION
+WHERE CITY ~* '^[aeiou].*[aeiou]$';
+
+-- solution for weather_observation_station_nine
+SELECT DISTINCT CITY
+FROM STATION
+WHERE CITY !~* '^[aeiou]';
+
+-- solution for weather_observation_station_ten
+SELECT DISTINCT CITY
+FROM STATION
+WHERE CITY !~* '[aeiou]$';
+
+-- solution for weather_observation_station_eleven
+SELECT DISTINCT CITY
+FROM STATION
+WHERE CITY !~* '^[aeiou].*[aeiou]$';
+
+-- solution for weather_observation_station_twelve
+SELECT DISTINCT CITY
+FROM STATION
+WHERE CITY !~* '^[aeiou]' and CITY !~* '[aeiou]$';
+
 
 -- solution for weather_observation_station_twenty
 -- my initial mistake, solution worked with odd numbers
