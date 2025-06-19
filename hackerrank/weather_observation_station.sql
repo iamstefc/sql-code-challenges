@@ -114,6 +114,8 @@ SELECT DISTINCT CITY
 FROM STATION
 WHERE CITY !~* '^[aeiou]' and CITY !~* '[aeiou]$';
 
+-- solution for weather_observation_station_thirteen
+
 
 -- solution for weather_observation_station_twenty
 -- my initial mistake, solution worked with odd numbers
