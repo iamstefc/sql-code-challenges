@@ -118,6 +118,8 @@ WHERE CITY !~* '^[aeiou]' and CITY !~* '[aeiou]$';
 
 -- solution for weather_observation_station_fourteen
 
+-- solution for weather_observation_station_fifthteeen
+
 
 -- solution for weather_observation_station_twenty
 -- my initial mistake, solution worked with odd numbers
