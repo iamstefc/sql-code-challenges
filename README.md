@@ -34,10 +34,9 @@ This table provides an overview of the Datalemur challenges I've worked on:
 
 This table provides an overview of the Hackerrank challenges I've worked on:
 
- | # | Title | Source | Solution Link | End Goal | 
- | ----- | ----- | ----- | ----- | ----- | 
- | 1 | weather observation station | [hackerrank](https://www.hackerrank.com/challenges/weather-observation-station-5/problem?isFullScreen=true) | [weather_observation_station_five] | Query the two cities in STATION with the shortest and longest CITY names, as well as their respective lengths |
- | 2 | weather observation station | [hackerrank](https://www.hackerrank.com/challenges/weather-observation-station-20/problem?isFullScreen=true) | [weather_observation_station_twenty] | Query the median of the Northern Latitudes (LAT_N) from STATION and round your answer to  decimal places |
+ | # | Title | Source | Parts |
+ | ----- | ----- | ----- | ----- |
+ | 1 | weather observation station | [hackerrank](https://www.hackerrank.com/domains/sql?badge_type=sql) | 1 -> 15, 20 |
 
 ## Contribution
 

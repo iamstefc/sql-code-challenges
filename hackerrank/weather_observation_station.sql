@@ -32,19 +32,19 @@ INSERT INTO public.station (id, city, state, lat_n, long_w) VALUES
 ALTER TABLE weather_observation_station_five RENAME TO station;
 
 ------------------------------------------------------------------------------------------------------
--- solution for weather_observation_station_one
+-- solution for part 1
 SELECT 
     CITY, 
     STATE 
 FROM station;
 
--- solution for weather_observation_station_two
+-- solution for part 2
 SELECT
 	ROUND(SUM(LAT_N),2), 
 	ROUND(SUM(LONG_W),2) 
 FROM station;
 
--- solution for weather_observation_station_three
+-- solution for part 3
 SELECT
     CITY
 FROM
@@ -52,13 +52,13 @@ FROM
 WHERE
     MOD(ID, 2) = 0;
 
--- solution for weather_observation_station_four
+-- solution for part 4
 SELECT 
     COUNT(CITY) - COUNT(DISTINCT CITY) 
 FROM station;
 
 
--- solution for weather_observation_station_five
+-- solution for part 5
 SELECT CITY, name_length
 FROM (
     -- city with the shortest name and its length
@@ -79,49 +79,71 @@ FROM (
     LIMIT 1
 ) AS longest_city_result;
 
--- solution for weather_observation_station_six
+-- solution for part 6
 SELECT DISTINCT CITY
 FROM STATION
 WHERE CITY ~* '^[aeiou]';
 
--- solution for weather_observation_station_seven
+-- solution for part 7
 SELECT DISTINCT CITY
 FROM STATION
 WHERE CITY ~* '[aeiou]$';
 
--- solution for weather_observation_station_eight
+-- solution for part 8
 SELECT DISTINCT CITY
 FROM STATION
 WHERE CITY ~* '^[aeiou].*[aeiou]$';
 
--- solution for weather_observation_station_nine
+-- solution for part 9
 SELECT DISTINCT CITY
 FROM STATION
 WHERE CITY !~* '^[aeiou]';
 
--- solution for weather_observation_station_ten
+-- solution for part 10
 SELECT DISTINCT CITY
 FROM STATION
 WHERE CITY !~* '[aeiou]$';
 
--- solution for weather_observation_station_eleven
+-- solution for part 11
 SELECT DISTINCT CITY
 FROM STATION
 WHERE CITY !~* '^[aeiou].*[aeiou]$';
 
--- solution for weather_observation_station_twelve
+-- solution for part 12
 SELECT DISTINCT CITY
 FROM STATION
 WHERE CITY !~* '^[aeiou]' and CITY !~* '[aeiou]$';
 
--- solution for weather_observation_station_thirteen
+-- solution for part 13
+-- Query the sum of Northern Latitudes (LAT_N) from STATION having values greater than 38.7880 and less than 137.2345
+SELECT ROUND(SUM(LAT_N),4) FROM STATION
+WHERE LAT_N > 38.7880 AND LAT_N < 137.2345;
 
--- solution for weather_observation_station_fourteen
+-- solution for part 14
+-- Query the greatest value of the Northern Latitudes (LAT_N) from STATION that is less than 137.2345
+SELECT ROUND(MAX(LAT_N),4) FROM STATION
+WHERE LAT_N < 137.2345;
 
--- solution for weather_observation_station_fifthteeen
+-- solution for part 15
+-- Query the Western Longitude (LONG_W) for the largest Northern Latitude (LAT_N) in STATION that is less than 137.2345
+SELECT ROUND(LONG_W,4) FROM STATION
+WHERE LAT_N = (SELECT MAX(LAT_N) FROM STATION WHERE LAT_N < 137.2345);
 
+-- solution for part 16
+-- Query the smallest Northern Latitude (LAT_N) from STATION that is greater than 38.7780
+SELECT ROUND(MIN(LAT_N),4) FROM STATION
+WHERE LAT_N > 38.7880;
 
--- solution for weather_observation_station_twenty
+-- solution for part 17
+-- Query the Western Longitude (LONG_W)where the smallest Northern Latitude (LAT_N) in STATION is greater than 38.7780
+SELECT ROUND(LONG_W,4) FROM STATION
+WHERE LAT_N = (SELECT MIN(LAT_N) FROM STATION WHERE LAT_N > 38.7880);
+
+-- solution for part 18
+
+-- solution for part 19
+
+-- solution for part 20
 -- my initial mistake, solution worked with odd numbers
 WITH distributed_quartiles AS (
     SELECT
